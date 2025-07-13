@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saikumar Annapareddy - BI & Data Engineer</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #4facfe 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent),
+        linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+      pointer-events: none;
+      z-index: -1;
+      animation: shimmer 8s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      border: 4px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      object-fit: cover;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.05);
+      border-color: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: headerGlow 12s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes headerGlow {
+
+      0%,
+      100% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: rotate(180deg) scale(1.1);
+      }
+    }
+
+    section {
+      padding: 30px;
+      max-width: 900px;
+      margin: 25px auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+      color: #2c3e50;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      border-radius: 20px 20px 0 0;
+    }
+
+    h1,
+    h2 {
+      margin: 0 0 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #007ACC;
+      text-decoration: none;
+    }
+
+    .contact p {
+      margin: 12px 0;
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact a {
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .contact a:hover {
+      transform: translateX(5px);
+    }
+
+    .floating-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      animation: float 20s infinite linear;
+    }
+
+    .particle:nth-child(1) {
+      left: 10%;
+      animation-delay: 0s;
+      animation-duration: 25s;
+    }
+
+    .particle:nth-child(2) {
+      left: 20%;
+      animation-delay: 2s;
+      animation-duration: 30s;
+    }
+
+    .particle:nth-child(3) {
+      left: 30%;
+      animation-delay: 4s;
+      animation-duration: 35s;
+    }
+
+    .particle:nth-child(4) {
+      left: 40%;
+      animation-delay: 6s;
+      animation-duration: 25s;
+    }
+
+    .particle:nth-child(5) {
+      left: 50%;
+      animation-delay: 8s;
+      animation-duration: 30s;
+    }
+
+    .particle:nth-child(6) {
+      left: 60%;
+      animation-delay: 10s;
+      animation-duration: 35s;
+    }
+
+    .particle:nth-child(7) {
+      left: 70%;
+      animation-delay: 12s;
+      animation-duration: 25s;
+    }
+
+    .particle:nth-child(8) {
+      left: 80%;
+      animation-delay: 14s;
+      animation-duration: 30s;
+    }
+
+    .particle:nth-child(9) {
+      left: 90%;
+      animation-delay: 16s;
+      animation-duration: 35s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      font-weight: 300;
+      opacity: 0.95;
+      margin-top: 15px;
+    }
+
+    h2 {
+      color: #2c3e50;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      font-weight: 600;
+    }
+
+    ul li {
+      margin-bottom: 12px;
+      line-height: 1.7;
+      font-size: 1.05em;
+    }
+
+    ul li strong {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 1.05em;
+      margin-bottom: 15px;
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #2980b9;
+      text-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="floating-particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <header>
+    <img src="attached_assets/Saikumar_Pic_1752429715399.png" alt="Saikumar Annapareddy" class="profile-image">
+    <h1>Saikumar Annapareddy</h1>
+    <p>BI & Data Engineer at UPS ITC, Chennai, India | MSBI | GCP | Azure | MS Power BI</p>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>Results-driven developer with 9+ years in BI and data engineering. Skilled in MSBI (SSIS, SSRS), GCP (BigQuery,
+      Dataflow), Azure (ADF), Power BI, and SQL Server. Currently working at UPS Logistics India. Certified in AWS Cloud
+      Practitioner and Azure Data Fundamentals.</p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <ul>
+      <li>MS SQL Server, SSIS, SSRS, Power BI</li>
+      <li>GCP: BigQuery, Dataflow, Data Fusion</li>
+      <li>Azure Data Factory, Azure Data Lake</li>
+      <li>CI/CD, Terraform, Python</li>
+      <li>ETL Development, Data Warehousing</li>
+      <li>Agile, Stakeholder Management, Troubleshooting</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <p>
+    <section>
+      <h2>Key Projects</h2>
+      <ul>
+        <li>
+          <strong>Cologne BI Reporting System (UPS)</strong> – Designed and deployed scalable data pipelines using
+          Google Cloud (BigQuery, Dataflow), automated data transfers, and built service accounts with Terraform.
+          Ensured high data accuracy and reliability across logistics reporting.
+        </li><br />
+        <li>
+          <strong>Enterprise Data Warehouse for Marina Bay Sands (HCL – Singapore)</strong> – Collaborated with
+          stakeholders from Marina Bay Sands, a leading hospitality client, to understand SER (Software Enhancement
+          Request) documents. Converted them into SDR (Software Development Request) designs, then architected and
+          implemented ETL pipelines using SSIS to extract data from multiple source systems into the staging layer.
+          Transformed data into a structured DWH and applied business logic to support financial, operational, and guest
+          experience analytics across the hotel and casino operations.
+        <li>
+          <strong>Casino Gaming Cross Products (Light & Wonder)</strong> – Engineered real-time Power BI dashboards and
+          ETL workflows for casino operations, delivering instant insights into gaming performance, player trends, and
+          operational KPIs.
+        </li><br />
+        <li>
+          <strong>MetLife Real Estate & Finance (Cognizant, USA)</strong> – Built secure ETL pipelines using SSIS to
+          transform XML and JSON data into SQL Server for financial apps. Implemented compliance-friendly data lineage
+          and automated reporting for regulatory use cases.
+        </li><br />
+        <li>
+          <strong>Phoenix CMS – Law Enforcement Systems (ProPhoenix, USA)</strong> – Led ETL development to migrate
+          legacy data from various formats into SQL Server for Police, Fire, and Jail departments. Designed SSIS
+          packages and stored procedures for secure, efficient correctional data handling.
+        </li>
+      </ul>
+    </section>
+
+    </p>
+  </section>
+
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>📍 Chennai, India</p>
+    <p>📞 +91-8870678742</p>
+    <p>📧 <a href="mailto:alsaikumar22@gmail.com">alsaikumar22@gmail.com</a></p>
+    <p>🔗 <a href="https://linkedin.com/in/saikumar-annapareddy-91324785" target="_blank">LinkedIn Profile</a></p>
+    <p>📄 <a href="resume.pdf" download>Download My Resume</a></p>
+  </section>
+
+</body>
+
+</html>
